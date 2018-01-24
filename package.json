@@ -1,5 +1,8 @@
 {
   "name": "DyploSysPol",
   "private": true,
+  "scripts": {
+    "start": "echo \"started\""
+  },
   "dependencies": {}
 }
