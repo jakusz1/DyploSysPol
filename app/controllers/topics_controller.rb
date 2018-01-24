@@ -18,7 +18,7 @@ class TopicsController < ApplicationController
 
   def checkboxes
     activated_ids = params[:activated].collect {|id| id.to_i} if params[:activated]
-    if activated_ids.count>0
+    if activated_ids
       if_accept = params[:commit]=='Akceptuj'
       
       if current_user.manager.present?
