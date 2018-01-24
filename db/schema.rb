@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104233757) do
+ActiveRecord::Schema.define(version: 20180122191437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,15 +18,11 @@ ActiveRecord::Schema.define(version: 20180104233757) do
   create_table "managers", force: :cascade do |t|
     t.integer "department", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_managers_on_user_id"
   end
 
   create_table "representatives", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_representatives_on_user_id"
   end
 
@@ -36,8 +32,6 @@ ActiveRecord::Schema.define(version: 20180104233757) do
     t.text "summary", null: false
     t.bigint "teacher_id", null: false
     t.bigint "topic_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_reviews_on_teacher_id"
     t.index ["topic_id"], name: "index_reviews_on_topic_id"
   end
@@ -47,8 +41,6 @@ ActiveRecord::Schema.define(version: 20180104233757) do
     t.integer "semester", null: false
     t.integer "studies_type", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -58,23 +50,19 @@ ActiveRecord::Schema.define(version: 20180104233757) do
     t.integer "degree_type", null: false
     t.bigint "user_id", null: false
     t.bigint "manager_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["manager_id"], name: "index_teachers_on_manager_id"
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
-    t.datetime "declaration_date", null: false
-    t.boolean "managers_allow", default: false, null: false
-    t.boolean "repres_allow", default: false, null: false
+    t.datetime "declaration_date"
+    t.boolean "managers_allow"
+    t.boolean "repres_allow"
     t.integer "attending_number", null: false
     t.string "title", null: false
-    t.boolean "if_eng", null: false
+    t.boolean "if_eng", default: false
     t.integer "studies_type", null: false
     t.bigint "teacher_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_topics_on_teacher_id"
   end
 
@@ -85,8 +73,17 @@ ActiveRecord::Schema.define(version: 20180104233757) do
     t.string "pesel", null: false
     t.string "uid"
     t.string "access_token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

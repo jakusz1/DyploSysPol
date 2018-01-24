@@ -1,0 +1,12 @@
+.container{style: "margin-top: 1rem"}
+  - if flash[:success]
+    .alert.alert-success
+      = flash[:success]
+  .jumbotron
+    = simple_form_for @topic, url: topics_url do |f|
+      = f.input :title, as: :text, label: 'Tytuł pracy'
+      = f.input :studies_type, as: :select, collection: Topic.studies_types.keys, label: 'Stopień studiów'
+      = f.input :if_eng, as: :radio_buttons, collection: [['angielski', true] ,['polski', false]], input_html: { style: 'margin-left: 10px' }, label: 'Język pracy'
+      = f.input :attending_number, as: :integer, input_html: { min: '1', max: '4' }, label: 'Liczba osób realizujących'
+      = f.button :submit, value: "Utwórz temat", class: 'btn btn-primary'
+      = link_to "Powrót", root_path, class: "btn btn-secondary"

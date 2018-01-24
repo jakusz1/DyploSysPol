@@ -1,2 +1,17 @@
-%nav.navbar.navbar-light.bg-light
-  %span.navbar-brand.mb-0.h1 DyploSysPol
+%nav.navbar.navbar-dark.navbar-expand-md.bg-dark.justify-content-center
+  %a.navbar-brand.d-flex.w-50.mr-auto{:href => "/"} DyploSysPol
+  #collapsingNavbar3.navbar-collapse.collapse
+    %ul.nav.navbar-nav.ml-auto.w-100.justify-content-end
+      %li.nav-item.active
+        -if current_user.teacher.present?
+          %a.nav-link nauczyciel:
+        -if current_user.manager.present?
+          %a.nav-link kierownik:
+        -if current_user.representative.present?
+          %a.nav-link pełnomocnik:
+      %li.nav-item.active
+        %a.nav-link
+          = "#{current_user.first_name} #{current_user.last_name}"
+      %br
+      %li.nav-item.active
+        = link_to 'Wyloguj', destroy_user_session_path, method: :delete, class: "btn btn-outline-light my-2 my-sm-0 mx-2"

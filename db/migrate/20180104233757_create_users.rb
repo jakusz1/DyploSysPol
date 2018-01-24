@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :pesel, null: false
       t.string :uid
       t.string :access_token
-      t.timestamps
     end
   end
 end

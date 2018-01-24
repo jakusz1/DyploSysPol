@@ -1,2 +1,31 @@
-<h1>Topics#index</h1>
-<p>Find me in app/views/topics/index.html.erb</p>
+.container{style: "margin-top: 1rem"}
+  - if flash[:notice]
+    .alert.alert-success
+      = flash[:notice]
+  .jumbotron
+    = form_tag topics_checkboxes_path, method: :post do
+      %div.table-responsive          
+        %table.table
+          %thead
+            %tr
+              %th
+              %th=sort_link(@q, :title, "Temat")
+              %th=sort_link(@q, :studies_type, "Stopień")
+              %th=sort_link(@q, :if_eng, "Język")
+              %th=sort_link(@q, :attending_number, "Realiz.")
+              %th=link_to 'Promotor'
+          %tbody
+            - @topics.each do |topic|
+              %tr
+                %td= check_box_tag 'activated[]', topic.id 
+                %td=topic.title
+                %td=topic.studies_type
+                %td #{topic.if_eng ? 'angielski' : 'polski'}
+                %td=topic.attending_number
+                %td="#{topic.teacher.user.first_name} #{topic.teacher.user.last_name}"
+      .row
+        .col-auto.mr-auto
+          = link_to "Powrót", root_path, class: "btn btn-secondary"
+        .col-auto
+          = submit_tag 'Akceptuj', class: 'btn btn-success'
+          = submit_tag 'Odrzuć', class: 'btn btn-danger'

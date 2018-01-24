@@ -6,7 +6,6 @@ class CreateReviews < ActiveRecord::Migration[5.1]
       t.text :summary, null:false
       t.references :teacher, null:false
       t.references :topic, null:false
-      t.timestamps
     end
   end
 end

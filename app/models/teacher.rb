@@ -1,6 +1,7 @@
 class Teacher < ApplicationRecord
 belongs_to :manager
-has_one :user
+belongs_to :user
 has_many :topics
+has_many :reviews
 enum degree_type: [:inzynier, :magister, :doktor, :doktorhab, :profesor]
 end

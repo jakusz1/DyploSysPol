@@ -1,23 +1,27 @@
 .container{style: "margin-top: 1rem"}
-  .page-header
-    %h3 Test systemu
-    %p Wybierz funkcjonalność:
-  .row
-    .col-sm-4
-      .card
-        .card-body
-          %h4.card-title jako Promotor
-          %p.card-text Utwórz propozycję tematu pracy inżynierskiej bądź magisterskiej
-          = link_to "Wybierz", new_topic_path, class: "btn btn-primary"
-    .col-sm-4
-      .card
-        .card-body
-          %h4.card-title jako Kierownik katedry
-          %p.card-text Przeglądaj listę tematów prac oczekujących na akceptację kierownika
-          %a.btn.btn-primary{:href => "kierownik"} Wybierz
-    .col-sm-4
-      .card
-        .card-body
-          %h4.card-title jako Pełnomocnik dziekana
-          %p.card-text Przeglądaj listę tematów prac oczekujących na akceptację pełnomocnika
-          %a.btn.btn-primary{:href => "pelnomoc"} Wybierz
+  .jumbotron
+    .page-header
+      %h3 Test systemu
+      %p Wybierz funkcjonalność:
+    .row
+      -if current_user.teacher.present?
+        .col-sm-8
+          .card
+            .card-body
+              %h4.card-title Nowy temat
+              %p.card-text Utwórz propozycję tematu pracy inżynierskiej bądź magisterskiej
+              = link_to "Wybierz", new_topic_path, class: "btn btn-primary"
+      -elsif current_user.manager.present?
+        .col-sm-8
+          .card
+            .card-body
+              %h4.card-title Akceptacja tematów
+              %p.card-text Przeglądaj listę tematów prac oczekujących na akceptację kierownika
+              = link_to "Wybierz", topics_path, class: "btn btn-primary"
+      -elsif current_user.representative.present?  
+        .col-sm-8
+          .card
+            .card-body
+              %h4.card-title Akceptacja tematów
+              %p.card-text Przeglądaj listę tematów prac oczekujących na akceptację pełnomocnika
+              = link_to "Wybierz", topics_path, class: "btn btn-primary"

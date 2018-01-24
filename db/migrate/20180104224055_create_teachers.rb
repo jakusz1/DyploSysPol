@@ -6,7 +6,6 @@ class CreateTeachers < ActiveRecord::Migration[5.1]
       t.integer :degree_type, null:false
       t.references :user, null:false
       t.references :manager, null:false
-      t.timestamps
     end
   end
 end

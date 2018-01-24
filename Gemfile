@@ -36,6 +36,8 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta3'
 gem 'simple_form'
+gem 'devise'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 
 group :development, :test do

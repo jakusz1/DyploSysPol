@@ -31,3 +31,16 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        topic:
+          attributes:
+            attending_number:
+              blank: "Wprowadź liczbę z zakresu 1 - 4"
+              inclusion: "Wprowadź liczbę z zakresu 1 - 4"
+            title:
+              blank: "Tytuł nie może być pusty"
+            studies_type:
+              blank: "Wybierz rodzaj studiów"
+            
